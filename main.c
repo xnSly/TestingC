@@ -1,20 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct myStruct
+typedef struct myStruct
 {
-    int value;
-};
+    int num;
+} myStruct;
+
+void myFunction(myStruct *tempStruct)
+{
+    tempStruct->num += 10;
+
+    printf("%p\n", &tempStruct->num);
+}
 
 int main()
 {
-    struct myStruct *Yes;
+    myStruct *coolStruct;
 
-    Yes = malloc(sizeof(struct myStruct));
+    coolStruct = ((myStruct*) malloc(sizeof(myStruct)));
 
-    Yes->value = 20;
+    coolStruct->num = 10;
 
-    printf("%d", Yes->value);
+    myFunction(coolStruct);
+
+    printf("%p\n", &coolStruct->num);
 
     return 0;
 }
