@@ -2,29 +2,26 @@
 
 int main()
 {
-    // This is a comment bing bong
+    /* Variables
 
-    /*
-        Multi-line comments are pretty cool!
-        I can write as many comments below this as I want-
-        as long as I stay within the multi-line comment :D
-
-        ESCAPE SEQUENCES:
-        - character combination consisting of a backslash \
-        followed by a letter or combination of digits.
-
-        They specify actions within a line or string of text
-        \n = newline
-        \t = tab
+    Variables are allocated space in memory to store a value.
+    We refer to a variable's name to access the stored value.
+    That variable now behaves as if it was the value it contains.
+    BUT we need to declare what type of data we are storing.
+    
     */
 
-    printf("I\nlike\npizza.\n");
+    int x; // Declaration
+    x = 123; // Initialization
 
-    printf("1\t2\t3\n4\t5\t6\n7\t8\t9\n");
+    int y = 321; // Declaration + Initialization
 
-    printf("\"I like ranch!\" - Abraham Lincoln probably\n");
+    int age = 20; // Integer
+    float gpa = 2.05; // Floating point number
+    char grade = 'C'; // Single character
+    char name[] = "Sly"; // Array of characters
 
-    printf("It's really good!\n");
+    printf("You are %d years old", age);
 
     return 0;
 }
