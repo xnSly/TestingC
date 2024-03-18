@@ -1,29 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct myStruct
+typedef struct Stack
 {
-    int num;
-} myStruct;
+    unsigned char capacity;
+    unsigned char occupied;
+    
+    int *stackArray;
 
-void myFunction(myStruct *tempStruct)
+} Stack;
+
+void allocStack(Stack *tStack)
 {
-    tempStruct->num += 10;
+    tStack->stackArray = ((int*) malloc(tStack->capacity));
+}
 
-    printf("%p\n", &tempStruct->num);
+void pushStack(Stack *tStack, int tValue)
+{
+    tStack->stackArray[tStack->occupied] = tValue;
+
+    tStack->occupied++;
+}
+
+int popStack(Stack *tStack)
+{
+    tStack->occupied--;
+
+    return tStack->stackArray[tStack->occupied];
 }
 
 int main()
 {
-    myStruct *coolStruct;
+    Stack myStack = {100, 0, 0};
 
-    coolStruct = ((myStruct*) malloc(sizeof(myStruct)));
+    allocStack(&myStack);
 
-    coolStruct->num = 10;
-
-    myFunction(coolStruct);
-
-    printf("%p\n", &coolStruct->num);
+    printf("%p", &myStack.stackArray[myStack.occupied]);
 
     return 0;
 }
