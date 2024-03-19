@@ -1,23 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Stack
 {
-    unsigned char capacity;
-    unsigned char occupied;
-    
-    int *stackArray;
+    char *stackptr;
+
+    unsigned short capacity;
+    unsigned short occupied;
+    unsigned short element_size;
 
 } Stack;
 
 void allocStack(Stack *tStack)
 {
-    tStack->stackArray = ((int*) malloc(tStack->capacity));
+    tStack->stackptr = ((int*) malloc(tStack->capacity));
 }
 
-void pushStack(Stack *tStack, int tValue)
+void pushStack(Stack *tStack, void *tValue)
 {
-    tStack->stackArray[tStack->occupied] = tValue;
+    memcpy(tStack->stackptr, tValue, sizeof(tValue));
+
+    tStack->stackptr[tStack->occupied] = tValue;
 
     tStack->occupied++;
 }
@@ -26,16 +30,14 @@ int popStack(Stack *tStack)
 {
     tStack->occupied--;
 
-    return tStack->stackArray[tStack->occupied];
+    return tStack->stackptr[tStack->occupied];
 }
 
 int main()
 {
-    Stack myStack = {100, 0, 0};
+    Stack myStack = {0, 100, 0, 0};
 
     allocStack(&myStack);
-
-    printf("%p", &myStack.stackArray[myStack.occupied]);
 
     return 0;
 }
